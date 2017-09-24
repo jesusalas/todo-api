@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from .models import Todo
 
-todo = Blueprint('simple_page', __name__)
+todo = Blueprint('todo', __name__)
 
 
 @todo.route("/api/todo", methods=['GET'])
