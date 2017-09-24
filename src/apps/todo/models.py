@@ -1,4 +1,5 @@
-from app import db
+from sqlalchemy import inspect
+from src.db import db
 
 
 class Todo(db.Model):
@@ -9,6 +10,12 @@ class Todo(db.Model):
 
     def __init__(self, name):
         self.name = name
+        db.session.add(self)
+        db.session.commit()
 
     def __repr__(self):
         return '<id {0}>'.format(self.id)
+
+    def to_dict(self):
+        return {c.key: getattr(self, c.key)
+                for c in inspect(self).mapper.column_attrs}
