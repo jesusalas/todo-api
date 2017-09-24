@@ -1,15 +1,15 @@
 class Config(object):
     DEBUG = False
     TESTING = False
-    DATABASE_URI = 'sqlite://:memory:'
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
 class ProductionConfig(Config):
-    DATABASE_URI = 'postgresql://localhost/todo_api_prod'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/todo_api_prod'
 
 
 class DevelopmentConfig(Config):
-    DATABASE_URI = 'postgresql://localhost/todo_api'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/todo_api'
     DEBUG = True
 
 
