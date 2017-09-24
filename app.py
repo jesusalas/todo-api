@@ -1,41 +1,27 @@
-from flask import Flask, jsonify, request
+from flask import Flask
+from src.apps.todo.api import todo
 
 app = Flask(__name__)
+app.config.from_object('src.config.DevelopmentConfig')
+app.register_blueprint(todo)
 
-data = {
-    "todo": [
-        {
-            "item": "Procesador",
-            "quantity": 2,
-        },
-        {
-            "item": "Tarjeta madre",
-            "quantity": 10,
-        }
-    ]
-}
+# data = {
+#     "todo": [
+#         {
+#             "item": "Procesador",
+#             "quantity": 2,
+#         },
+#         {
+#             "item": "Tarjeta madre",
+#             "quantity": 10,
+#         }
+#     ]
+# }
 
-
-@app.route("/api/todo", methods=['GET'])
-def list_item():
-    return jsonify(data)
-
-
-@app.route("/api/todo", methods=['POST'])
-def create_item():
-    item = request.form.to_dict()
-    data["todo"].append(item)
-    return jsonify(item)
-
-# @app.route("/valid/<param>/")
-# def is_valid(param):
-#     print(request.is_secure)
-#     print(request.data)
-#     print(request.query_string)
-#     args = request.args.to_dict()
-#     print(args["go"])
-#     print(param)
-#     # print(request.user_agent)
-#     return jsonify({"message": "Es valido"})
+# @app.before_request
+# def before_request():
+#   response = jsonify({ 'message': 'Error'})
+#   response.status_code = 422
+#   return response
 
 app.run(debug=True, port=3333, host="0.0.0.0")
