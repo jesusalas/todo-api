@@ -28,3 +28,10 @@ def create_item():
 def get_item(id):
     todo = Todo.query.get(id).to_dict()
     return jsonify({"todo": todo})
+
+
+# delete todo by id
+@todo.route("/api/todo/<int:id>", methods=['DELETE'])
+def delete_item(id):
+    todo = Todo.query.get(id).delete().to_dict()
+    return jsonify({"todo": todo})

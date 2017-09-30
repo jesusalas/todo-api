@@ -19,6 +19,12 @@ class Todo(db.Model):
         db.session.commit()
         return self
 
+    # FIXME: Validar si se obtiene un objeto
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+        return self
+
     def to_dict(self):
         return {c.key: getattr(self, c.key)
                 for c in inspect(self).mapper.column_attrs}
