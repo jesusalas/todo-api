@@ -17,6 +17,7 @@ class Todo(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+        return self
 
     def to_dict(self):
         return {c.key: getattr(self, c.key)
