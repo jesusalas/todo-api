@@ -10,11 +10,13 @@ class Todo(db.Model):
 
     def __init__(self, name):
         self.name = name
-        db.session.add(self)
-        db.session.commit()
 
     def __repr__(self):
         return '<id {0}>'.format(self.id)
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
 
     def to_dict(self):
         return {c.key: getattr(self, c.key)

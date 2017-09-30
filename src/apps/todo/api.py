@@ -18,4 +18,5 @@ def list_item():
 @todo.route("/api/todo", methods=['POST'])
 def create_item():
     todo = Todo(request.form.to_dict().get("name"))
+    todo.save()
     return jsonify({"todo": todo.to_dict()})
