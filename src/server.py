@@ -1,6 +1,8 @@
 import os
+
 from flask import Flask
-from .apps.todo.api import todo
+
+from .apps.todo.controllers import todo
 from .db import db
 
 app = Flask(__name__)
