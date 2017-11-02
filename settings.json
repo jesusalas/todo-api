@@ -1,5 +1,0 @@
-{
-  "DEBUG": true,
-  "SQLALCHEMY_TRACK_MODIFICATIONS": true,
-  "SQLALCHEMY_DATABASE_URI": "postgresql://localhost/todo-api"
-}
