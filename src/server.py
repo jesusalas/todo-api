@@ -4,7 +4,7 @@ from .apps.todo.api import todo
 from .db import db
 
 app = Flask(__name__)
-app.config.from_json(os.path.abspath(os.path.join('config.json')))
+app.config.from_json(os.path.abspath(os.path.join('settings.json')))
 
 db.init_app(app)
 
