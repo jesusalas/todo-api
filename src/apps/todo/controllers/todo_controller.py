@@ -16,7 +16,7 @@ class TodoListController(Resource):
 
     def post(self):
         todo = Todo(request.form.to_dict().get("name")).save().to_dict()
-        return jsonify({"todo": todo}), 201
+        return jsonify({"todo": todo})
 
 
 class TodoController(Resource):
