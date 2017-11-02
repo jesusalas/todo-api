@@ -1,6 +1,5 @@
 from sqlalchemy import inspect
-from src.db import db
-
+from ....db import db
 
 class Todo(db.Model):
     __tablename__ = 'todo'
