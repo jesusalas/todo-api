@@ -4,4 +4,7 @@
 __pycache__/
 .idea/
 
+.vagrant/
+*.log
+
 settings.json
