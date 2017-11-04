@@ -7,7 +7,7 @@ User=ubuntu
 Group=www-data
 WorkingDirectory=/var/www/todo-api
 Environment="PATH=/var/.envs/todo-api/bin"
-ExecStart=/var/.envs/todo-api/bin/uwsgi --ini todo-api.ini
+ExecStart=/var/.envs/todo-api/bin/uwsgi --ini /var/www/todo-api/todo-api.ini
 
 [Install]
 WantedBy=multi-user.target
