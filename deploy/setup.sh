@@ -11,7 +11,7 @@ sudo apt-get install python3-pip python3-dev -y
 
 # setup odbc in linux
 echo "Setup odbc in linux"
- sudo /var/www/todo-api/deploy/odbc/install.sh
+sudo /var/www/todo-api/deploy/odbc/install.sh
 
 # setup locales
 echo "Setup locales"
