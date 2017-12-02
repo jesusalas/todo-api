@@ -46,8 +46,8 @@ echo "####################"
 sudo apt-get install libssl1.0.0 libgss3 -y
 sudo ldconfig
 
-sudo cp -f /var/www/todo-api/deploy/odbc/odbc.ini /etc/odbc.ini
-sudo cp -f /var/www/todo-api/deploy/odbc/odbcinst.ini /etc/odbcinst.ini
+sudo cp -f /var/www/$1/deploy/odbc/odbc.ini /etc/odbc.ini
+sudo cp -f /var/www/$1/deploy/odbc/odbcinst.ini /etc/odbcinst.ini
 
 # update pip and install virtualenv
 echo "####################"
@@ -57,31 +57,31 @@ sudo pip install --upgrade pip
 sudo pip install virtualenv
 
 # create vm
-sudo virtualenv -p python3 /var/.envs/todo-api/
+sudo virtualenv -p python3 /var/.envs/$1/
 
 # install requirements.txt
 echo "####################"
 echo "Install our app"
 echo "####################"
-sudo /var/.envs/todo-api/bin/pip install -r /var/www/todo-api/requirements.txt
+sudo /var/.envs/$1/bin/pip install -r /var/www/$1/requirements.txt
 
 # setup nginx (copy setup and reload)
 echo "####################"
 echo "Setup nginx"
 echo "####################"
 sudo rm /etc/nginx/sites-enabled/default
-sudo cp /var/www/todo-api/deploy/nginx.conf /etc/nginx/sites-available/todo-api.conf
-sudo ln -s /etc/nginx/sites-available/todo-api.conf /etc/nginx/sites-enabled/todo-api.conf
+sudo cp /var/www/$1/deploy/nginx.conf /etc/nginx/sites-available/$1.conf
+sudo ln -s /etc/nginx/sites-available/$1.conf /etc/nginx/sites-enabled/$1.conf
 sudo /etc/init.d/nginx reload
 
 # supervisor
 echo "####################"
 echo "Setup supervisor"
 echo "####################"
-sudo cp /var/www/todo-api/deploy/supervisor.conf /etc/supervisor/conf.d/todo-api.conf
+sudo cp /var/www/$1/deploy/supervisor.conf /etc/supervisor/conf.d/$1.conf
 
 sudo supervisorctl reread
 sudo supervisorctl update
-sudo supervisorctl start todo-api
+sudo supervisorctl start $1
 
 echo "We are the champions my friend !!!"
