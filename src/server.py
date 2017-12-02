@@ -10,4 +10,8 @@ app.config.from_json(os.path.abspath(os.path.join('settings.json')))
 
 db.init_app(app)
 
+@app.route("/")
+def index():
+    return "Welcome to Todo Api"
+
 app.register_blueprint(todo)
