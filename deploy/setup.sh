@@ -11,18 +11,18 @@ sudo apt-get install supervisor -y
 # install python 3
 sudo apt-get install python3-pip python3-dev -y
 
-# setup odbc in linux
-echo "####################"
-echo "Setup odbc in linux"
-echo "####################"
-sudo sh /var/www/todo-api/deploy/odbc/install.sh
-
 # setup locales
 echo "####################"
 echo "Setup locales"
 echo "####################"
 sudo locale-gen --purge en_US.UTF-8
 sudo echo -e 'LANG="en_US.UTF-8"\nLANGUAGE="en_US:en"\n' > /etc/default/locale
+
+# setup odbc in linux
+echo "####################"
+echo "Setup odbc in linux"
+echo "####################"
+(sudo exec /var/www/todo-api/deploy/odbc/install.sh)
 
 # update pip and install virtualenv
 echo "####################"

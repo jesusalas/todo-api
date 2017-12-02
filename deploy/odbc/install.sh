@@ -3,7 +3,7 @@
 echo "####################"
 echo "Installing dependencies for pyodbc"
 echo "####################"
-sudo apt-get install unixodbc-dev-utf16 -y
+sudo apt-get install unixodbc-dev unixodbc-bin -y
 sudo apt-get install python-pyodbc -y
 
 echo "####################"
@@ -22,16 +22,9 @@ sudo ln -sfn /opt/mssql-tools/bin/bcp-13.0.1.0 /usr/bin/bcp
 echo "####################"
 echo "Installing Dependencies"
 echo "####################"
-sudo apt-get install libssl1.0.0
-sudo apt-get install libgss3
+sudo apt-get install libssl1.0.0 -y
+sudo apt-get install libgss3 -y
 sudo ldconfig
 
-echo "####################"
-echo "Configure profile & bash"
-echo "####################"
-sudo echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
-sudo echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
-sudo source ~/.bashrc
-
-sudo cat /var/www/todo-api/deploy/odbc/odbc.ini > /etc/odbc.ini
-sudo cat /var/www/todo-api/deploy/odbc/odbcinst.ini > /etc/odbcinst.ini
+sudo mv -rf /var/www/todo-api/deploy/odbc/odbc.ini > /etc/odbc.ini
+sudo mv -rf /var/www/todo-api/deploy/odbc/odbcinst.ini > /etc/odbcinst.ini
